@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://besls6qyy6vro"]
+
+[ext_resource type="Texture2D" uid="uid://bkcfighfep3f4" path="res://Assets/Textures/UI/UI_Flat_FrameSlot02a.png" id="1_sope6"]
+[ext_resource type="Texture2D" uid="uid://dm0mgkg20fpii" path="res://Assets/Textures/UI/UI_Flat_FrameSlot02b.png" id="2_88hwd"]
+[ext_resource type="Script" uid="uid://uxv426tmdaxb" path="res://Generic/scripts/square_button.gd" id="3_6s5f4"]
+[ext_resource type="FontFile" uid="uid://ccpb53p55tgg1" path="res://Assets/Fonts/Pixellari.ttf" id="4_uw2q1"]
+
+[node name="Button" type="TextureButton"]
+custom_minimum_size = Vector2(100, 100)
+focus_mode = 0
+texture_normal = ExtResource("1_sope6")
+texture_pressed = ExtResource("2_88hwd")
+stretch_mode = 0
+script = ExtResource("3_6s5f4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_uw2q1")
+theme_override_font_sizes/normal_font_size = 20
+text = "BUTTON"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

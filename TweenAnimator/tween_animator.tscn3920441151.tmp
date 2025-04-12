@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://rvpld3rpav5a"]
+
+[ext_resource type="Script" uid="uid://cr71dr6b4bqti" path="res://TweenAnimator/main.gd" id="1_3b321"]
+[ext_resource type="Texture2D" uid="uid://bptmp8h6visg3" path="res://icon.svg" id="2_mpf2a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c1g7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3b321")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8c1g7")
+position = Vector2(840, 525)
+texture = ExtResource("2_mpf2a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 1088.0
+offset_top = 448.0
+offset_right = 1280.0
+offset_bottom = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 50
+text = "TEXT"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -803.0
+offset_top = 8.0
+offset_right = 804.0
+offset_bottom = 932.0
+grow_horizontal = 2
+columns = 15
