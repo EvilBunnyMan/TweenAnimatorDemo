@@ -11,5 +11,15 @@ config_version=5
 [application]
 
 config/name="TweenAnimatordemo"
+run/main_scene="uid://rvpld3rpav5a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1680
+window/size/viewport_height=1050
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/TweenAnimator/plugin.cfg")

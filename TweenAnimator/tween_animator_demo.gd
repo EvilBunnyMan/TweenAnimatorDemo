@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var example_sprite: Sprite2D = $Sprite2D
-@onready var example_text : RichTextLabel = $RichTextLabel
+@onready var example_sprite: Sprite2D = $ExampleSprite
+@onready var example_text : RichTextLabel = $ExampleText
 @onready var example_rect : TextureRect = $CanvasLayer/TextureRect
 @onready var container := $CanvasLayer/Control/GridContainer
 @onready var button_scene: PackedScene = preload("res://Generic/scenes/square_button.tscn")
@@ -13,6 +13,10 @@ var is_dragging : bool = false
 var drag_offset : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	_animate_tween_animator_text()
+	TweenAnimator.glow_pulse(example_rect)
+
+	
 	for anim_key in TweenAnimator.animation_names.keys():
 		var anim_name = TweenAnimator.animation_names[anim_key]
 		
@@ -53,6 +57,7 @@ func _process(delta: float) -> void:
 		var mouse_pos = get_global_mouse_position()
 		example_rect.position = mouse_pos - drag_offset  # Update rect position based on mouse movement
 		
+		
 	else :
 		if mouse_detected:
 			# Get the position of the mouse in global coordinates
@@ -64,6 +69,7 @@ func _process(delta: float) -> void:
 				TweenAnimator.spotlight_on(example_rect, 0.5)
 			else:
 				TweenAnimator.spotlight_off(example_rect, 0.5)
+			
 
 # Handle mouse button input (e.g., left click for animations, right click for dragging)
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
@@ -86,7 +92,19 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 					# Start dragging: record the offset between mouse position and rect position
 					is_dragging = true
 					drag_offset = get_global_mouse_position() - example_rect.position
+					TweenAnimator.glow_pulse(example_rect)
 			else:
 				TweenAnimator.wiggle(example_rect)
+				TweenAnimator.glow_pulse(example_rect)
 				# Stop dragging when the right mouse button is released
 				is_dragging = false
+
+func _animate_tween_animator_text():
+	TweenAnimator.drop_in($TweenAnimatorText)
+	TweenAnimator.fade_in($DemoText)
+	
+func _reanimate_tween_animator_text():
+	TweenAnimator.blink($TweenAnimatorText)
+	
+func _on_timer_timeout() -> void:
+	_reanimate_tween_animator_text()

@@ -1,37 +1,93 @@
-[gd_scene load_steps=4 format=3 uid="uid://rvpld3rpav5a"]
+[gd_scene load_steps=6 format=3 uid="uid://rvpld3rpav5a"]
 
-[ext_resource type="Script" uid="uid://cr71dr6b4bqti" path="res://TweenAnimator/tween_animator_demo.gd" id="1_3mnmr"]
-[ext_resource type="Texture2D" uid="uid://bptmp8h6visg3" path="res://icon.svg" id="2_ms2b0"]
+[ext_resource type="Script" uid="uid://dolcckcfdwvuj" path="res://TweenAnimator/tween_animator_demo.gd" id="1_3mnmr"]
+[ext_resource type="Texture2D" uid="uid://cklsfr6kh4ehb" path="res://icon.svg" id="2_ms2b0"]
+[ext_resource type="FontFile" uid="uid://ccpb53p55tgg1" path="res://Assets/Fonts/Pixellari.ttf" id="3_ms2b0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8c1g7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mnmr"]
+bg_color = Color(0.156345, 0.0567, 0.21, 0.780392)
 
 [node name="TweenAnimatorDemo" type="Node2D"]
 script = ExtResource("1_3mnmr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="ExampleSprite" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_8c1g7")
-position = Vector2(840, 525)
+position = Vector2(840, 638)
 texture = ExtResource("2_ms2b0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = 7
+[node name="ExampleText" type="RichTextLabel" parent="."]
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 1088.0
-offset_top = 448.0
-offset_right = 1280.0
-offset_bottom = 576.0
+anchor_bottom = 0.5
+offset_left = 1058.0
+offset_top = 476.0
+offset_right = 1250.0
+offset_bottom = 604.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "TEXT"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TweenAnimatorText" type="RichTextLabel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1216.0
+offset_top = 829.0
+offset_right = 1656.0
+offset_bottom = 1037.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_ms2b0")
+theme_override_font_sizes/normal_font_size = 50
+text = "TWEEN ANIMATOR"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DemoText" type="RichTextLabel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1216.0
+offset_top = 905.0
+offset_right = 1656.0
+offset_bottom = 1037.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_ms2b0")
+theme_override_font_sizes/normal_font_size = 50
+text = "Demo"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3mnmr")
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -55,11 +111,33 @@ grow_horizontal = 2
 columns = 10
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 16.0
+offset_left = 66.0
 offset_top = 760.0
-offset_right = 248.0
+offset_right = 298.0
 offset_bottom = 992.0
 pivot_offset = Vector2(112, 128)
 texture = ExtResource("2_ms2b0")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -223.0
+offset_right = 150.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(104, 22)
+theme_override_font_sizes/normal_font_size = 30
+text = "Click me with mb1
+Drag me with mb2"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="gui_input" from="CanvasLayer/TextureRect" to="." method="_on_texture_rect_gui_input"]
