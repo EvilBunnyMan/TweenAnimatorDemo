@@ -5,6 +5,9 @@ extends Node2D
 @onready var example_rect : TextureRect = $CanvasLayer/TextureRect
 @onready var container := $CanvasLayer/Control/GridContainer
 @onready var button_scene: PackedScene = preload("res://Generic/scenes/square_button.tscn")
+@onready var tween_anim_text : RichTextLabel = $DemoNode/TweenAnimatorText
+@onready var demo_text : RichTextLabel = $DemoNode/DemoText
+@onready var demo_node : Node2D = $DemoNode
 
 var punch_anim_duration : float = 0.1
 var punch_anim : bool = false
@@ -16,7 +19,6 @@ func _ready() -> void:
 	_animate_tween_animator_text()
 	TweenAnimator.glow_pulse(example_rect)
 
-	
 	for anim_key in TweenAnimator.animation_names.keys():
 		var anim_name = TweenAnimator.animation_names[anim_key]
 		
@@ -42,6 +44,12 @@ func _ready() -> void:
 			if callable.is_valid():
 				if anim_name == "vanish":
 					callable.call(example_sprite, 0.4, true)
+				elif anim_name == "disappear":
+					callable.call(example_sprite, 0.3, true)
+				if anim_name == "black_hole":
+					callable.call(example_sprite, 0.8, true)
+				elif anim_name == "explode":
+					callable.call(example_sprite, 1.8, 0.4, true)
 				elif anim_name == "typewriter":
 					callable.call(example_text)
 				else:
@@ -56,8 +64,6 @@ func _process(delta: float) -> void:
 		# Calculate the new position of the rect while dragging
 		var mouse_pos = get_global_mouse_position()
 		example_rect.position = mouse_pos - drag_offset  # Update rect position based on mouse movement
-		
-		
 	else :
 		if mouse_detected:
 			# Get the position of the mouse in global coordinates
@@ -100,11 +106,16 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 				is_dragging = false
 
 func _animate_tween_animator_text():
-	TweenAnimator.drop_in($TweenAnimatorText)
-	TweenAnimator.fade_in($DemoText)
+	TweenAnimator.drop_in(tween_anim_text)
+	TweenAnimator.fade_in(demo_text)
 	
 func _reanimate_tween_animator_text():
-	TweenAnimator.blink($TweenAnimatorText)
+	TweenAnimator.float_bob(demo_node, 10.0, 1.0)
+	TweenAnimator.blink(tween_anim_text)
+	TweenAnimator.typewriter(demo_text)
+	
+	await get_tree().create_timer(2.5).timeout
+	TweenAnimator.float_bob(demo_node)
 	
 func _on_timer_timeout() -> void:
 	_reanimate_tween_animator_text()

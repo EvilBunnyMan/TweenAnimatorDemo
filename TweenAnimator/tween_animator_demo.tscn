@@ -13,7 +13,7 @@ bg_color = Color(0.156345, 0.0567, 0.21, 0.780392)
 script = ExtResource("1_3mnmr")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 5.0
 autostart = true
 
 [node name="ExampleSprite" type="Sprite2D" parent="."]
@@ -40,16 +40,19 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TweenAnimatorText" type="RichTextLabel" parent="."]
+[node name="DemoNode" type="Node2D" parent="."]
+position = Vector2(1440, 930)
+
+[node name="TweenAnimatorText" type="RichTextLabel" parent="DemoNode"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1216.0
-offset_top = 829.0
-offset_right = 1656.0
-offset_bottom = 1037.0
+offset_left = -210.0
+offset_top = -99.0
+offset_right = 230.0
+offset_bottom = 109.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_ms2b0")
@@ -59,16 +62,16 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DemoText" type="RichTextLabel" parent="."]
+[node name="DemoText" type="RichTextLabel" parent="DemoNode"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1216.0
-offset_top = 905.0
-offset_right = 1656.0
-offset_bottom = 1037.0
+offset_left = -210.0
+offset_top = -23.0
+offset_right = 230.0
+offset_bottom = 109.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("3_ms2b0")
