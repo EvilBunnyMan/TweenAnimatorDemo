@@ -50,7 +50,13 @@ func _ready() -> void:
 					callable.call(example_sprite, 0.8, true)
 				elif anim_name == "explode":
 					callable.call(example_sprite, 1.8, 0.4, true)
+				elif anim_name == "tv_shutdown":
+					callable.call(example_sprite, 0.5, true)
+				elif anim_name == "creep_out":
+					callable.call(example_sprite, 1.0, true)
 				elif anim_name == "typewriter":
+					callable.call(example_text)
+				elif anim_name == "letter_stretch":
 					callable.call(example_text)
 				else:
 					callable.call(example_sprite)
