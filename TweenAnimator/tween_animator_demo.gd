@@ -65,7 +65,7 @@ func _ready() -> void:
 		) 
 
 # Process method to handle dragging while the mouse is held down
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_dragging:
 		# Calculate the new position of the rect while dragging
 		var mouse_pos = get_global_mouse_position()
